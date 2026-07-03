@@ -1,0 +1,51 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+int majorityElement(int* nums, int numsSize) {
+    int max=nums[0];
+    for(int i=0;i<numsSize;i++)
+    {
+        if(nums[i]>max)
+        {
+            max=nums[i];
+        }
+        
+    }
+    int arr[max+1];
+    for(int i = 0; i <= max; i++)
+{
+    arr[i] = 0;
+}
+    int size1=sizeof(arr)/sizeof(arr[0]);
+    for(int i=0;i<numsSize;i++)
+    {
+        arr[nums[i]]++;
+    }
+    
+    
+    int majority;
+    
+    
+    for(int i=0;i<size1;i++)
+    {
+        if(arr[i]>numsSize/2)
+        {
+            majority=i;
+        }
+    }
+    return majority;
+}
+int main()
+{
+    int nums[]={1,2,1,1,2};
+    int numsSize=sizeof(nums)/sizeof(nums[0]);
+    int result= majorityElement(nums,numsSize);
+    printf("majrity=%d",result);
+    return 0;
+}
