@@ -1,0 +1,225 @@
+
+
+
+#include <stdio.h>
+
+int Largestelement(int arr[],int size)
+{
+    printf("Largestelement\n");
+    int largest=arr[0];
+    for(int i=0;i<size;i++)
+    {
+        if(arr[i]>largest)
+        {
+            largest=arr[i];
+        }
+    }
+   
+}
+
+void smallestelement(int arr[],int size)
+{
+    printf("smallestelement\n");
+    int smallest=arr[0];
+    for(int i=0;i<size;i++)
+    {
+        if(smallest<arr[i])
+        {
+            smallest=arr[i];
+        }
+    }
+    printf("smallest=%d",smallest);
+}
+
+void sumofelements(int arr[],int size)
+{
+    printf("sumofelements\n");
+     int sum=0;
+    for(int i=0;i<size;i++)
+    {
+        sum+=arr[i];
+    }
+    printf("sum=%d\n",sum);
+}
+
+void averageofelements(int arr[],int size)
+{
+    printf("averageofelements\n");
+     int sum=0;
+    for(int i=0;i<size;i++)
+    {
+        sum+=i;
+    }
+    printf("average=%d\n",sum/size);
+}
+
+void Countevennumbers(int arr[],int size)
+{
+    printf(" Countevennumbers\n");
+    for(int i=0;i<size;i++)
+    {
+        if(arr[i]%2==0)
+        {
+            printf("%d",arr[i]);
+        }
+    }
+}
+
+void Countoddnumbers(int arr[],int size)
+{
+    printf("Countoddnumbers\n");
+    int count=0;
+    for(int i=0;i<size;i++)
+    {
+        if(arr[i]%2!=0)
+        {
+            count++;
+            printf("count=%d\n",count);
+        }
+    }
+}
+
+void Linearsearch(int arr[],int size)
+{
+    printf(" Linearsearch\n");
+    int key=7;
+    for(int i=0;i<size;i++)
+    {
+        if(arr[i]==key)
+        {
+            printf("%d\n",arr[i]);
+        }
+    }
+}
+
+void Countoccurrences(int arr[],int size)
+{
+    printf("Countoccurrences\n");
+    int key=7,count=0;
+     for(int i=0;i<size;i++)
+    {
+        if(arr[i]==key)
+        {
+            count++;
+            printf("%d\n",count);
+        }
+    }
+}
+
+void Firstoccurrence(int arr[],int size)
+{
+    printf("Firstoccurrence\n");
+     int key=7;
+     for(int i=0;i<size;i++)
+    {
+        if(arr[i]==key)
+        {
+            
+            printf(" Firstoccurrence=%d\n",arr[i]);
+            break;
+        }
+    }
+}
+
+void Lastoccurrence(int arr[],int size)
+{ 
+    printf("Lastoccurrence\n");
+     int key=7;
+     int Lastoccurrence;
+     for(int i=0;i<size;i++)
+    {
+        if(arr[i]==key)
+        {
+            
+            Lastoccurrence=i;
+        }
+    }
+    printf("Lastoccurrence=%d\n",Lastoccurrence);
+
+}
+
+void Reversearray(int arr[],int size)
+{
+    printf("Reversearray\n");
+    for(int i=0;i<size/2;i++)
+    {
+        int temp=arr[size-1-i];
+        arr[size-1-i]=arr[i];
+        arr[i]=temp;
+    }
+    for(int i=0;i<size;i++)
+    {
+        printf("%d\n",arr[i]);
+    }
+}
+
+
+
+int main()
+{
+   int arr[] = {12, 7, 25, 18, 7, 42, 9, 18, 30, 7};
+   int size=sizeof(arr)/sizeof(arr[0]);
+   int choice;
+   while(choice!=11)
+   {
+       printf("press 1 for Largestelement\n");
+       printf("press 2 for smallestelement\n");
+       printf("press 3 for sumofelements\n");
+       printf("press 4 for averageofelements\n");
+       printf("press 5 for Countevennumbers\n");
+       printf(" press 6 for Countoddnumbers\n");
+       printf("press 7 for  Linearsearch\n");
+       printf("press 8 for  Countoccurrences\n");
+       printf("press 9 for  Lastoccurrence\n");
+       printf("press 10 for  Reversearray\n");
+       printf("enter 11 for exit\n");
+       scanf("%d",&choice);
+       if(choice>=1&&choice<=11)
+       {
+          
+       switch(choice)
+       {
+    case 1:
+           int result=Largestelement(arr,size);
+           printf("largest=%d\n",result);
+           break;
+    case 2:
+         smallestelement(arr,size);
+          break;
+    case 3:
+         sumofelements(arr,size);
+          break;
+    case 4:
+         averageofelements(arr,size);
+          break;
+    case 5:
+        Countevennumbers(arr,size);
+         break;
+     case 6:
+         Countoddnumbers(arr,size);
+          break;
+    case 7:
+           Linearsearch(arr,size);
+            break;
+    case 8:
+           Countoccurrences(arr,size);
+            break;
+    case 9:
+          Lastoccurrence(arr,size);
+           break;
+    case 10:
+          Reversearray(arr,size);
+           break;
+    case 11:
+         printf("exiting the loop");
+     choice=11;
+      break;
+   }
+       }
+   else{
+       printf("enter correct number\n");
+   }
+
+}
+return 0;
+}
