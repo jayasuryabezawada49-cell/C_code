@@ -1,0 +1,52 @@
+Operations:
+SET
+CLEAR
+TOGGLE
+READ
+WRITE
+SWAP
+
+Try to perform above operations on Bit and Nibble level
+
+
+Practice Problems:
+Set the 5th bit.
+
+Clear the 7th bit.
+
+Toggle every alternate bit.
+
+Read the MSB.
+
+Swap bit 2 and bit 6.
+
+Reverse all bits.
+
+Reverse all nibbles.
+
+Swap adjacent bits.
+
+Count set bits without using loops (Brian Kernighan's algorithm).
+
+Check whether a number is a power of 2.
+
+Find the first set bit.
+
+Find the last set bit.
+
+Count leading zeros.
+
+Count trailing zeros.
+
+Count adjacent set-bit pairs.
+
+Rotate bits left and right.
+
+Swap odd and even nibbles.
+
+Print binary in 8-bit, 16-bit, and 32-bit formats.
+
+Find parity (odd/even parity).
+
+Find the longest consecutive sequence of set bits.
+
