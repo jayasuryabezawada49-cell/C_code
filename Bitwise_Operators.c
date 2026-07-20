@@ -9,6 +9,7 @@ Write your code in this editor and press "Run" button to compile and execute it.
 #include <stdio.h>
 #include<stdint.h>
 #include<stdbool.h>
+#include <stdlib.h>
 void setbit()
 {
     printf("enter data to set \n");
@@ -149,10 +150,9 @@ void counttrailingzros()
 }
 void printbinary()
 {
- static int expression;
-  printf("expression%d\n",expression);
-    while(expression!=4)
+    while(1)
     {
+        int expression;
             printf("\npress 1 for 8bit\n press 2 for 16bit\npress 3 for 32bit\npress 4 to stop=\n");
             scanf("%d",&expression);
          switch(expression)
@@ -195,9 +195,8 @@ void printbinary()
                 }
                 case 4:
                 {
-                expression=4;
-                break;
-                }
+                 return ;
+                 }
                 default:
                 printf("\ngive valid number\n");
                 break;
@@ -246,25 +245,106 @@ void longestsequence()
 }
 int main()
 {
-   setbit();
-    clearbit();
-   toggle();
-   readmsb();
-   swaptwobits();
-   reverseallbits();
-  countbits();
- if(powerof())
- {
-     printf("True\n");
- }
- else{
-     printf("False\n");
- }
- firstbit();
- lastbit();
- countleadingzeros();
- counttrailingzros();
-printbinary();
-findparity();
-longestsequence();
+ while (1)
+{
+    int choice;
+
+    printf("\n========== Bit Manipulation Menu ==========\n");
+    printf("1. Set Bit\n");
+    printf("2. Clear Bit\n");
+    printf("3. Toggle Bit\n");
+    printf("4. Read MSB\n");
+    printf("5. Swap Two Bits\n");
+    printf("6. Reverse All Bits\n");
+    printf("7. Count Set Bits\n");
+    printf("8. Check Power of Two\n");
+    printf("9. Find First Set Bit\n");
+    printf("10. Find Last Set Bit\n");
+    printf("11. Count Leading Zeros\n");
+    printf("12. Count Trailing Zeros\n");
+    printf("13. Print Binary\n");
+    printf("14. Find Parity\n");
+    printf("15. Longest Sequence of 1s\n");
+    printf("16. Exit\n");
+
+    printf("\nEnter your choice: ");
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+        case 1:
+            setbit();
+            break;
+
+        case 2:
+            clearbit();
+            break;
+
+        case 3:
+            toggle();
+            break;
+
+        case 4:
+            readmsb();
+            break;
+
+        case 5:
+            swaptwobits();
+            break;
+
+        case 6:
+            reverseallbits();
+            break;
+
+        case 7:
+            countbits();
+            break;
+
+        case 8:
+            if (powerof())
+                printf("True\n");
+            else
+                printf("False\n");
+            break;
+
+        case 9:
+            firstbit();
+            break;
+
+        case 10:
+            lastbit();
+            break;
+
+        case 11:
+            countleadingzeros();
+            break;
+
+        case 12:
+            counttrailingzros();
+            break;
+
+        case 13:
+            printbinary();
+            break;
+
+        case 14:
+            findparity();
+            break;
+
+        case 15:
+            longestsequence();
+            break;
+
+        case 16:
+            printf("Exiting...\n");
+            return 0;
+            break;
+            
+        
+        
+
+        default:
+            printf("Invalid Choice!\n");
+    }
+}
 }
