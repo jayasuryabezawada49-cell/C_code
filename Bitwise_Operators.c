@@ -1,350 +1,426 @@
-/******************************************************************************
-
-                            Online C Compiler.
-                Code, Compile, Run and Debug C program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
-
 #include <stdio.h>
-#include<stdint.h>
-#include<stdbool.h>
+#include <stdint.h>
+#include <stdbool.h>
 #include <stdlib.h>
-void setbit()
+
+/*---------------------------------------------------------*/
+void setbit(unsigned int data)
 {
-    printf("enter data to set \n");
-    unsigned int data;
-    scanf("%u",&data);
-    data|=(1<<5);
-    printf("print the data=%u\n",data);
-    
-}
-void clearbit()
-{
-    printf("enter data to clear \n");
-    unsigned int data;
-    scanf("%u",&data);
-    data&=~(1<<2);
-    printf("print the data=%u\n",data);
-}
-void toggle()
-{
-    
-      printf("enter data to toggle \n");
-    unsigned int data;
-    scanf("%u",&data);
-    data=(uint8_t)~data;
-    printf("print the data=%u\n",(unsigned int)data);
-}
-void readmsb()
-{
-    printf("enter data to read \n");
-    uint8_t data;
-    uint8_t msb;
-    scanf("%hhu",&data);
-    printf("%hhu\n",(data>>7));
+    data |= (1 << 5);
+    printf("Data = %u\n", data);
 }
 
+/*---------------------------------------------------------*/
+void clearbit(unsigned int data)
+{
+    data &= ~(1 << 2);
+    printf("Data = %u\n", data);
+}
 
-void swaptwobits()
+/*---------------------------------------------------------*/
+void toggle(uint8_t data)
 {
-    
-    uint8_t val=32;
-    uint8_t result;
-    result=(((val>>5)&1)<<2)|(((val>>2)&1)<<5);
-   
-    printf("%hhu\n",result);
+    data = ~data;
+    printf("Data = %u\n", (unsigned int)data);
+}
 
-  
-}
-void reverseallbits()
+/*---------------------------------------------------------*/
+void readmsb(uint8_t data)
 {
-for (int i = 0; i < 8; i++)
-{
-    uint8_t val=32;
-    uint8_t result;
-    result |= ((val >> i) & 1) << (7 - i);
-    printf("%hhu\n",result);
+    printf("MSB = %d\n", (data >> 7) & 1);
 }
-}
-void countbits()
+
+/*---------------------------------------------------------*/
+void swaptwobits(uint8_t val)
 {
-    int a;
-    printf("\nenter the numbers\n");
-    scanf("%d",&a);
-    int count=0;
-    while(a!=0)
+    uint8_t result = val;
+
+    uint8_t bit5 = (val >> 5) & 1;
+    uint8_t bit2 = (val >> 2) & 1;
+
+    result &= ~((1 << 5) | (1 << 2));
+    result |= (bit5 << 2);
+    result |= (bit2 << 5);
+
+    printf("Result = %u\n", result);
+}
+
+/*---------------------------------------------------------*/
+void reverseallbits(uint8_t val)
+{
+    uint8_t result = 0;
+
+    for (int i = 0; i < 8; i++)
     {
-        a=a&(a-1);
+        result |= ((val >> i) & 1) << (7 - i);
+    }
+
+    printf("Reversed = %u\n", result);
+}
+
+/*---------------------------------------------------------*/
+void countbits(int data)
+{
+    int count = 0;
+
+    while (data != 0)
+    {
+        data = data & (data - 1);
         count++;
     }
-    printf("count=%d",count);
+
+    printf("Count = %d\n", count);
 }
-bool powerof()
+
+/*---------------------------------------------------------*/
+bool powerof(int data)
 {
-    int a;
-    printf("\nenter number=");
-    scanf("%d",&a);
-    if(((a>>0)&1)==0)
-    {
-        return true;
-    }
-    else{
+    if (data <= 0)
         return false;
-    }
-}
-void firstbit()
-{
-    uint8_t data=1;
-    printf("firstbit=%d\n",(data>>0)&1);
-}
-void lastbit()
-{
-    uint8_t data=128;
-    printf("lastbit=%d\n",(data>>7)&1);
-}
-void countleadingzeros()
-{
-    uint8_t data;
-    printf("enter data");
-    scanf("%d",&data);
-    int count=0;
-            int i=7;
 
-    while(data!=0)
+    return (data & (data - 1)) == 0;
+}
+
+/*---------------------------------------------------------*/
+void firstbit(uint8_t data)
+{
+    for (int i = 0; i < 8; i++)
     {
-        if(((data>>i)&1)==0)
+        if ((data >> i) & 1)
         {
-            count++;
-            
+            printf("First Set Bit Position = %d\n", i);
+            return;
         }
-        else{
-            break;
-        }
-        i--;
     }
-            printf("count leadingzero=%d",count);
 
+    printf("No set bits\n");
 }
-void counttrailingzros()
+
+/*---------------------------------------------------------*/
+void lastbit(uint8_t data)
 {
-     uint8_t data;
-    printf("enter data");
-    scanf("%d",&data);
-    int count=0;
-            int i=0;
-
-    while(data!=0)
+    for (int i = 7; i >= 0; i--)
     {
-        if(((data>>i)&1)==0)
+        if ((data >> i) & 1)
         {
-            count++;
-            
+            printf("Last Set Bit Position = %d\n", i);
+            return;
         }
-        else{
-            break;
-        }
-        i++;
     }
-            printf("count leadingzero=%d",count);
+
+    printf("No set bits\n");
 }
+
+/*---------------------------------------------------------*/
+void countleadingzeros(uint8_t data)
+{
+    int count = 0;
+
+    for (int i = 7; i >= 0; i--)
+    {
+        if (((data >> i) & 1) == 0)
+            count++;
+        else
+            break;
+    }
+
+    printf("Leading Zeros = %d\n", count);
+}
+
+/*---------------------------------------------------------*/
+void counttrailingzeros(uint8_t data)
+{
+    int count = 0;
+
+    for (int i = 0; i < 8; i++)
+    {
+        if (((data >> i) & 1) == 0)
+            count++;
+        else
+            break;
+    }
+
+    printf("Trailing Zeros = %d\n", count);
+}
+
+/*---------------------------------------------------------*/
 void printbinary()
 {
-    while(1)
+    while (1)
     {
         int expression;
-            printf("\npress 1 for 8bit\n press 2 for 16bit\npress 3 for 32bit\npress 4 to stop=\n");
-            scanf("%d",&expression);
-         switch(expression)
-         {
-             case 1:
-             {
-             uint8_t data;
-                printf("enter  data");
-                scanf("%hhu",&data);
-                 printf("8-bit binary=");
-                for(int i=7;i>0;i--)
-                {
-                    printf("%d",(data>>i)&1);
-                }
-                break;
-             }
-                case 2:
-                {
-             uint16_t data;
-                printf("enter  data");
-                scanf("%hu",&data);
-                printf("16-bit binary=");
-                for(int i=15;i>0;i--)
-                {
-                    printf("%d",(data>>i)&1);
-                }
-                break;
-                }
-                case 3:
-                {
-             uint32_t data;
-                printf("enter  data");
-                scanf("%u",&data);
-                 printf("32-bit binary=");
-                for(int i=31;i>0;i--)
-                {
-                    printf("%d",(data>>i)&1);
-                }
-                break;
-                }
-                case 4:
-                {
-                 return ;
-                 }
-                default:
-                printf("\ngive valid number\n");
-                break;
-                
-         }
 
+        printf("\n1. 8-bit");
+        printf("\n2. 16-bit");
+        printf("\n3. 32-bit");
+        printf("\n4. Exit");
+        printf("\nEnter choice: ");
+        scanf("%d", &expression);
+
+        switch (expression)
+        {
+        case 1:
+        {
+            uint8_t data;
+            printf("Enter data: ");
+            scanf("%hhu", &data);
+
+            printf("Binary = ");
+            for (int i = 7; i >= 0; i--)
+                printf("%d", (data >> i) & 1);
+            printf("\n");
+            break;
+        }
+
+        case 2:
+        {
+            uint16_t data;
+            printf("Enter data: ");
+            scanf("%hu", &data);
+
+            printf("Binary = ");
+            for (int i = 15; i >= 0; i--)
+                printf("%d", (data >> i) & 1);
+            printf("\n");
+            break;
+        }
+
+        case 3:
+        {
+            uint32_t data;
+            printf("Enter data: ");
+            scanf("%u", &data);
+
+            printf("Binary = ");
+            for (int i = 31; i >= 0; i--)
+                printf("%d", (data >> i) & 1);
+            printf("\n");
+            break;
+        }
+
+        case 4:
+            return;
+
+        default:
+            printf("Invalid Choice\n");
+        }
     }
 }
-void findparity()
+
+/*---------------------------------------------------------*/
+void findparity(uint8_t data)
 {
-    uint8_t data;
-    printf("enter data");
-    scanf("%d",&data);
-    int count=0;
-    while(data!=0)
+    int count = 0;
+
+    while (data)
     {
-        data=data&(data-1);
+        data &= (data - 1);
         count++;
     }
-    (count%2==0)?printf("even parity"):printf("odd parity");
-}
-void longestsequence()
-{
- unsigned int n = 0b001111001110;
-    int count = 0;
-    int max_count = 0;
 
-    while (n != 0)
+    if (count % 2 == 0)
+        printf("Even Parity\n");
+    else
+        printf("Odd Parity\n");
+}
+
+/*---------------------------------------------------------*/
+void longestsequence(unsigned int n)
+{
+    int count = 0;
+    int max = 0;
+
+    while (n)
     {
         if (n & 1)
         {
             count++;
-
-            if (count > max_count)
-                max_count = count;
+            if (count > max)
+                max = count;
         }
         else
         {
             count = 0;
         }
 
-        n = n >> 1;
+        n >>= 1;
     }
 
-    printf("Longest sequence of 1s = %d\n", max_count);
+    printf("Longest Sequence = %d\n", max);
 }
+
+/*=========================================================*/
 int main()
 {
- while (1)
-{
-    int choice;
-
-    printf("\n========== Bit Manipulation Menu ==========\n");
-    printf("1. Set Bit\n");
-    printf("2. Clear Bit\n");
-    printf("3. Toggle Bit\n");
-    printf("4. Read MSB\n");
-    printf("5. Swap Two Bits\n");
-    printf("6. Reverse All Bits\n");
-    printf("7. Count Set Bits\n");
-    printf("8. Check Power of Two\n");
-    printf("9. Find First Set Bit\n");
-    printf("10. Find Last Set Bit\n");
-    printf("11. Count Leading Zeros\n");
-    printf("12. Count Trailing Zeros\n");
-    printf("13. Print Binary\n");
-    printf("14. Find Parity\n");
-    printf("15. Longest Sequence of 1s\n");
-    printf("16. Exit\n");
-
-    printf("\nEnter your choice: ");
-    scanf("%d", &choice);
-
-    switch (choice)
+    while (1)
     {
+        int choice;
+
+        printf("\n========== Bit Manipulation Menu ==========\n");
+        printf("1. Set Bit\n");
+        printf("2. Clear Bit\n");
+        printf("3. Toggle Bit\n");
+        printf("4. Read MSB\n");
+        printf("5. Swap Two Bits\n");
+        printf("6. Reverse All Bits\n");
+        printf("7. Count Set Bits\n");
+        printf("8. Check Power of Two\n");
+        printf("9. Find First Set Bit\n");
+        printf("10. Find Last Set Bit\n");
+        printf("11. Count Leading Zeros\n");
+        printf("12. Count Trailing Zeros\n");
+        printf("13. Print Binary\n");
+        printf("14. Find Parity\n");
+        printf("15. Longest Sequence of 1s\n");
+        printf("16. Exit\n");
+
+        printf("\nEnter Choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
         case 1:
-            setbit();
+        {
+            unsigned int data;
+            printf("Enter data: ");
+            scanf("%u", &data);
+            setbit(data);
             break;
+        }
 
         case 2:
-            clearbit();
+        {
+            unsigned int data;
+            printf("Enter data: ");
+            scanf("%u", &data);
+            clearbit(data);
             break;
+        }
 
         case 3:
-            toggle();
+        {
+            uint8_t data;
+            printf("Enter data: ");
+            scanf("%hhu", &data);
+            toggle(data);
             break;
+        }
 
         case 4:
-            readmsb();
+        {
+            uint8_t data;
+            printf("Enter data: ");
+            scanf("%hhu", &data);
+            readmsb(data);
             break;
+        }
 
         case 5:
-            swaptwobits();
+        {
+            uint8_t data;
+            printf("Enter data: ");
+            scanf("%hhu", &data);
+            swaptwobits(data);
             break;
+        }
 
         case 6:
-            reverseallbits();
+        {
+            uint8_t data;
+            printf("Enter data: ");
+            scanf("%hhu", &data);
+            reverseallbits(data);
             break;
+        }
 
         case 7:
-            countbits();
+        {
+            int data;
+            printf("Enter data: ");
+            scanf("%d", &data);
+            countbits(data);
             break;
+        }
 
         case 8:
-            if (powerof())
+        {
+            int data;
+            printf("Enter data: ");
+            scanf("%d", &data);
+
+            if (powerof(data))
                 printf("True\n");
             else
                 printf("False\n");
             break;
+        }
 
         case 9:
-            firstbit();
+        {
+            uint8_t data;
+            printf("Enter data: ");
+            scanf("%hhu", &data);
+            firstbit(data);
             break;
+        }
 
         case 10:
-            lastbit();
+        {
+            uint8_t data;
+            printf("Enter data: ");
+            scanf("%hhu", &data);
+            lastbit(data);
             break;
+        }
 
         case 11:
-            countleadingzeros();
+        {
+            uint8_t data;
+            printf("Enter data: ");
+            scanf("%hhu", &data);
+            countleadingzeros(data);
             break;
+        }
 
         case 12:
-            counttrailingzros();
+        {
+            uint8_t data;
+            printf("Enter data: ");
+            scanf("%hhu", &data);
+            counttrailingzeros(data);
             break;
+        }
 
         case 13:
+        {
             printbinary();
             break;
+        }
 
         case 14:
-            findparity();
+        {
+            uint8_t data;
+            printf("Enter data: ");
+            scanf("%hhu", &data);
+            findparity(data);
             break;
+        }
 
         case 15:
-            longestsequence();
+        {
+            unsigned int data;
+            printf("Enter data: ");
+            scanf("%u", &data);
+            longestsequence(data);
             break;
+        }
 
         case 16:
             printf("Exiting...\n");
             return 0;
-            break;
-            
-        
-        
 
         default:
             printf("Invalid Choice!\n");
+        }
     }
-}
 }
