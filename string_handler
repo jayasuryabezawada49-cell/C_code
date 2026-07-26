@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include <string.h>
+
+void strcpy_string()
+{
+    char str[] = "hello";
+    char str1[20];
+
+    int i;
+    for(i = 0; str[i] != '\0'; i++)
+    {
+        str1[i] = str[i];
+    }
+    str1[i] = '\0';
+
+    printf("Copied String : %s\n", str1);
+}
+
+void strconcat_string()
+{
+    char src[20] = "Hello";
+    char dest[] = "world";
+
+    int length = strlen(src);
+
+    for(int i = 0; dest[i] != '\0'; i++)
+    {
+        src[length + i] = dest[i];
+    }
+
+    src[length + strlen(dest)] = '\0';
+
+    printf("Concatenated String : %s\n", src);
+}
+
+void stringcomp_string()
+{
+    char src[] = "Hello";
+    char dest[] = "world";
+
+    int position = 0;
+
+    for(int i = 0; src[i] != '\0' || dest[i] != '\0'; i++)
+    {
+        if(src[i] != dest[i])
+        {
+            position = 1;
+            break;
+        }
+    }
+
+    if(position)
+        printf("Strings are not equal\n");
+    else
+        printf("Strings are equal\n");
+}
+
+void stringchr_string()
+{
+    char src[] = "Hello";
+
+    for(int i = 0; src[i] != '\0'; i++)
+    {
+        if(src[i] == 'l')
+        {
+            for(int j = i; src[j] != '\0'; j++)
+            {
+                printf("%c", src[j]);
+            }
+            printf("\n");
+            return;
+        }
+    }
+
+    printf("Character not found\n");
+}
+
+int main()
+{
+    int choice;
+
+    while(1)
+    {
+        printf("\n===== STRING MENU =====\n");
+        printf("1. strcpy\n");
+        printf("2. strcat\n");
+        printf("3. strcmp\n");
+        printf("4. strchr\n");
+        printf("5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice)
+        {
+            case 1:
+                strcpy_string();
+                break;
+
+            case 2:
+                strconcat_string();
+                break;
+
+            case 3:
+                stringcomp_string();
+                break;
+
+            case 4:
+                stringchr_string();
+                break;
+
+            case 5:
+                printf("Exiting...\n");
+                return 0;
+
+            default:
+                printf("Invalid Choice\n");
+        }
+    }
+
+    return 0;
+}
