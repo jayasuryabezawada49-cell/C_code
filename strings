@@ -1,1 +1,315 @@
 
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+/*Read and print a string.
+Find the length of a string.
+Count the number of vowels.
+Count the number of consonants.
+Count the number of digits.
+Count the number of special characters.
+Count the number of spaces.
+Count uppercase letters.
+Count lowercase letters.
+Convert lowercase to uppercase.
+Convert uppercase to lowercase.
+Toggle the case of every character.
+Print each character on a new line.
+Print the string in reverse.
+Check whether a character exists in the string.*/
+
+
+
+#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
+
+
+void read_and_print()
+{
+ char *str;
+ str=(char*)malloc(20*sizeof(char));
+ fgets(str,19,stdin);
+ printf("str=%s\n",str);
+ free(str);
+}
+
+
+void length_of_a_string()
+{
+    char str[]="hello";
+    int length=strlen(str);
+    int length2=0;
+    printf("length by using builtinfun=%d\n",length);
+   while(str[length2]!='\0')
+   {
+       length2++;
+   }
+   printf("length2=%d\n",length2);
+    
+}
+void vowels()
+{
+    char *str;
+
+    str = malloc(20 * sizeof(char));
+
+    printf("Enter string: ");
+    fgets(str, 20, stdin);
+
+    int length = strlen(str);
+
+    char vowels[] = "aeiouAEIOU";
+
+    int countVowels = 0;
+    int countConsonants = 0;
+
+    for (int i = 0; i < length; i++)
+    {
+        int isVowel = 0;
+
+        for (int j = 0; vowels[j] != '\0'; j++)
+        {
+            if (str[i] == vowels[j])
+            {
+                isVowel = 1;
+                break;
+            }
+        }
+
+        if (isVowel)
+            countVowels++;
+        else if ((str[i] >= 'a' && str[i] <= 'z') ||
+                 (str[i] >= 'A' && str[i] <= 'Z'))
+            countConsonants++;
+    }
+
+    printf("Vowels = %d\n", countVowels);
+    printf("Consonants = %d\n", countConsonants);
+
+    free(str);
+}
+void digits()
+{
+    char *str;
+    str=(char*)malloc(20*sizeof(char));
+    fgets(str,20,stdin);
+    int length=strlen(str);
+    int count=0;
+    for(int i=0;i<length;i++)
+    {
+        if(str[i]>='0'&&str[i]<='9')
+        {
+            count++;
+        }
+    }
+    printf("countdigits=%d",count);
+}
+void special_character()
+{
+     char *str;
+    str=(char*)malloc(20*sizeof(char));
+    fgets(str,20,stdin);
+    int length=strlen(str);
+    int count=0;
+    for(int i=0;i<length;i++)
+    {
+        
+       if (str[i] == '\n')
+        continue;
+       if(!(str[i]>='0'&&str[i]<='9'||str[i]>='a'&&str[i]<='z'||str[i]>='A'&&str[i]<='Z'))
+       {
+           count++;
+       }
+    }
+    printf("countspecialsymbol=%d",count);
+}
+void uppercase()
+{
+    
+     char *str;
+    str=(char*)malloc(20*sizeof(char));
+    fgets(str,20,stdin);
+    int length=strlen(str);
+    int count=0;
+    for(int i=0;i<length;i++)
+    {
+        if(str[i]>='A'&&str[i]<='Z')
+        {
+            count++;
+        }
+    }
+    printf("uppercasecount=%d",count);
+}
+void lowercase()
+{
+    
+     char *str;
+    str=(char*)malloc(20*sizeof(char));
+    fgets(str,20,stdin);
+    int count=0;
+    int length=strlen(str);
+    for(int i=0;i<length;i++)
+    {
+        if(str[i]>='a'&&str[i]<='z')
+        {
+            count++;
+        }
+    }
+    printf("lowercasecount=%d",count);
+}
+void convertlowercase()
+{
+    
+     char *str;
+    str=(char*)malloc(20*sizeof(char));
+    fgets(str,20,stdin);
+    int length=strlen(str);
+    for(int i=0;i<length;i++)
+    {
+        if(str[i]>='A'&&str[i]<='Z')
+        {
+            str[i]+=32;
+        }
+    }
+    printf("%s",str);
+}
+void convertuppercase()
+{
+    
+     char *str;
+    str=(char*)malloc(20*sizeof(char));
+    fgets(str,20,stdin);
+    int length=strlen(str);
+    for(int i=0;i<length;i++)
+    {
+        if(str[i]>='a'&&str[i]<='z')
+        {
+            str[i]-=32;
+        }
+    }
+    printf("%s",str);
+}
+void reverse()
+{
+    char *str;
+    str=(char*)malloc(20*sizeof(char));
+    fgets(str,20,stdin);
+    int length=strlen(str);
+    for(int i=0;i<length/2;i++)
+    {
+        
+        char temp=str[length-i-1];
+        str[length-i-1]=str[i];
+        str[i]=temp;
+    }
+    printf("%s",str);
+}
+#include <stdio.h>
+
+int main()
+{
+    int choice;
+
+    while (1)
+    {
+        printf("\n=========== STRING MENU ===========\n");
+        printf("1. Read and Print String\n");
+        printf("2. Find Length of String\n");
+        printf("3. Count Vowels and Consonants\n");
+        printf("4. Count Digits\n");
+        printf("5. Count Special Characters\n");
+        printf("6. Count Spaces\n");
+        printf("7. Count Uppercase Letters\n");
+        printf("8. Count Lowercase Letters\n");
+        printf("9. Convert Uppercase to Lowercase\n");
+        printf("10. Convert Lowercase to Uppercase\n");
+        printf("11. Toggle Case\n");
+        printf("12. Print Each Character in New Line\n");
+        printf("13. Print Reverse String\n");
+        printf("14. Check Character Exists\n");
+        printf("15. (Reserved)\n");
+        printf("16. Exit\n");
+        printf("===================================\n");
+
+        printf("Enter your choice : ");
+        scanf("%d", &choice);
+        getchar();     // Remove newline from input buffer
+
+        switch (choice)
+        {
+            case 1:
+                read_and_print();
+                break;
+
+            case 2:
+                length_of_a_string();
+                break;
+
+            case 3:
+                vowels();
+                break;
+
+            case 4:
+                digits();
+                break;
+
+            case 5:
+                special_character();
+                break;
+
+            case 6:
+                printf("Space counting function not implemented.\n");
+                break;
+
+            case 7:
+                uppercase();
+                break;
+
+            case 8:
+                lowercase();
+                break;
+
+            case 9:
+                convertlowercase();
+                break;
+
+            case 10:
+                convertuppercase();
+                break;
+
+            case 11:
+                printf("Toggle case function not implemented.\n");
+                break;
+
+            case 12:
+                printf("Print each character function not implemented.\n");
+                break;
+
+            case 13:
+                reverse();
+                break;
+
+            case 14:
+                printf("Character search function not implemented.\n");
+                break;
+
+            case 15:
+                printf("Reserved.\n");
+                break;
+
+            case 16:
+                printf("Program Exited Successfully.\n");
+                return 0;
+
+            default:
+                printf("Invalid Choice!\n");
+        }
+    }
+
+    return 0;
+}
