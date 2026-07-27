@@ -1,0 +1,49 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n;
+    printf("enter enter size");
+    scanf("%d",&n);
+   int *arr=(int*)malloc(n*sizeof(int));
+   if(arr==NULL)
+   {
+       printf("memory is not created");
+   }
+   for(int i=0;i<n;i++)
+   {
+          printf("enter %d number",i+1);
+
+       scanf("%d",&arr[i]);
+   }
+   for(int k=0;k<=5;k++)
+   {
+       for(int i=k;i<5;i++)
+         {
+                  printf("[");
+
+             for(int j=0+k;j<=i;j++)
+               {
+                printf("%d",arr[j]);
+                   if(j<i)
+                {
+                  printf(",");
+                 }
+              else{
+               printf("]");
+                   }
+                 }
+       printf("\n");
+         }
+   }
+    return 0;
+}
