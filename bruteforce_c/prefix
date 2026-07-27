@@ -25,6 +25,8 @@ int main()
 
        scanf("%d",&arr[i]);
    }
+     int count =n*(n+1)/2;
+
    for(int k=0;k<=5;k++)
    {
        for(int i=k;i<5;i++)
@@ -45,5 +47,6 @@ int main()
        printf("\n");
          }
    }
+  printf("count=%d",count);
     return 0;
 }
