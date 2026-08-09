@@ -74,12 +74,26 @@ void stringchr_string(char *src, char ch)
         if(src[i] == ch)
         {
             printf("Character '%c' found at position %d\n", ch, i);
-
             return;
         }
     }
 
     printf("Character not found\n");
+}
+
+
+/* ================= STRLEN ================= */
+
+void stringlength_string(char *str)
+{
+    int count = 0;
+
+    while(str[count] != '\0')
+    {
+        count++;
+    }
+
+    printf("Length = %d\n", count);
 }
 
 
@@ -89,8 +103,10 @@ int main()
 {
     int choice;
     int n1, n2;
+
     char *str;
     char *str1;
+
     char ch;
 
     while(1)
@@ -100,7 +116,8 @@ int main()
         printf("2. strcat\n");
         printf("3. strcmp\n");
         printf("4. strchr\n");
-        printf("5. Exit\n");
+        printf("5. strlen\n");
+        printf("6. Exit\n");
 
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -112,7 +129,7 @@ int main()
 
             case 1:
 
-                printf("Enter size of source string: ");
+                printf("Enter size of string: ");
                 scanf("%d", &n1);
 
                 str = malloc(n1 * sizeof(char));
@@ -241,9 +258,34 @@ int main()
                 break;
 
 
-            /* ============ EXIT ============ */
+            /* ============ STRLEN ============ */
 
             case 5:
+
+                printf("Enter size of string: ");
+                scanf("%d", &n1);
+
+                str = malloc(n1 * sizeof(char));
+
+                if(str == NULL)
+                {
+                    printf("Memory allocation failed\n");
+                    break;
+                }
+
+                printf("Enter string: ");
+                scanf("%s", str);
+
+                stringlength_string(str);
+
+                free(str);
+
+                break;
+
+
+            /* ============ EXIT ============ */
+
+            case 6:
 
                 printf("Exiting...\n");
                 return 0;
