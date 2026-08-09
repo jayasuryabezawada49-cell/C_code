@@ -1,43 +1,52 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-void strcpy_string()
+
+/* ================= STRCPY ================= */
+
+void strcpy_string(char *str, char *str1)
 {
-    char str[] = "hello";
-    char str1[20];
-
     int i;
+
     for(i = 0; str[i] != '\0'; i++)
     {
         str1[i] = str[i];
     }
+
     str1[i] = '\0';
 
     printf("Copied String : %s\n", str1);
 }
 
-void strconcat_string()
+
+/* ================= STRCAT ================= */
+
+void strconcat_string(char *src, char *dest)
 {
-    char src[20] = "Hello";
-    char dest[] = "world";
+    int length = 0;
 
-    int length = strlen(src);
+    while(src[length] != '\0')
+    {
+        length++;
+    }
 
-    for(int i = 0; dest[i] != '\0'; i++)
+    int i;
+
+    for(i = 0; dest[i] != '\0'; i++)
     {
         src[length + i] = dest[i];
     }
 
-    src[length + strlen(dest)] = '\0';
+    src[length + i] = '\0';
 
     printf("Concatenated String : %s\n", src);
 }
 
-void stringcomp_string()
-{
-    char src[] = "Hello";
-    char dest[] = "world";
 
+/* ================= STRCMP ================= */
+
+void stringcomp_string(char *src, char *dest)
+{
     int position = 0;
 
     for(int i = 0; src[i] != '\0' || dest[i] != '\0'; i++)
@@ -55,19 +64,17 @@ void stringcomp_string()
         printf("Strings are equal\n");
 }
 
-void stringchr_string()
-{
-    char src[] = "Hello";
 
+/* ================= STRCHR ================= */
+
+void stringchr_string(char *src, char ch)
+{
     for(int i = 0; src[i] != '\0'; i++)
     {
-        if(src[i] == 'l')
+        if(src[i] == ch)
         {
-            for(int j = i; src[j] != '\0'; j++)
-            {
-                printf("%c", src[j]);
-            }
-            printf("\n");
+            printf("Character '%c' found at position %d\n", ch, i);
+
             return;
         }
     }
@@ -75,9 +82,16 @@ void stringchr_string()
     printf("Character not found\n");
 }
 
+
+/* ================= MAIN ================= */
+
 int main()
 {
     int choice;
+    int n1, n2;
+    char *str;
+    char *str1;
+    char ch;
 
     while(1)
     {
@@ -87,32 +101,156 @@ int main()
         printf("3. strcmp\n");
         printf("4. strchr\n");
         printf("5. Exit\n");
+
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
+
         switch(choice)
         {
+            /* ============ STRCPY ============ */
+
             case 1:
-                strcpy_string();
+
+                printf("Enter size of source string: ");
+                scanf("%d", &n1);
+
+                str = malloc(n1 * sizeof(char));
+                str1 = malloc(n1 * sizeof(char));
+
+                if(str == NULL || str1 == NULL)
+                {
+                    printf("Memory allocation failed\n");
+
+                    free(str);
+                    free(str1);
+
+                    break;
+                }
+
+                printf("Enter string: ");
+                scanf("%s", str);
+
+                strcpy_string(str, str1);
+
+                free(str);
+                free(str1);
+
                 break;
+
+
+            /* ============ STRCAT ============ */
 
             case 2:
-                strconcat_string();
+
+                printf("Enter total size for concatenated string: ");
+                scanf("%d", &n1);
+
+                printf("Enter size of second string: ");
+                scanf("%d", &n2);
+
+                str = malloc(n1 * sizeof(char));
+                str1 = malloc(n2 * sizeof(char));
+
+                if(str == NULL || str1 == NULL)
+                {
+                    printf("Memory allocation failed\n");
+
+                    free(str);
+                    free(str1);
+
+                    break;
+                }
+
+                printf("Enter first string: ");
+                scanf("%s", str);
+
+                printf("Enter second string: ");
+                scanf("%s", str1);
+
+                strconcat_string(str, str1);
+
+                free(str);
+                free(str1);
+
                 break;
+
+
+            /* ============ STRCMP ============ */
 
             case 3:
-                stringcomp_string();
+
+                printf("Enter size of first string: ");
+                scanf("%d", &n1);
+
+                printf("Enter size of second string: ");
+                scanf("%d", &n2);
+
+                str = malloc(n1 * sizeof(char));
+                str1 = malloc(n2 * sizeof(char));
+
+                if(str == NULL || str1 == NULL)
+                {
+                    printf("Memory allocation failed\n");
+
+                    free(str);
+                    free(str1);
+
+                    break;
+                }
+
+                printf("Enter first string: ");
+                scanf("%s", str);
+
+                printf("Enter second string: ");
+                scanf("%s", str1);
+
+                stringcomp_string(str, str1);
+
+                free(str);
+                free(str1);
+
                 break;
+
+
+            /* ============ STRCHR ============ */
 
             case 4:
-                stringchr_string();
+
+                printf("Enter size of string: ");
+                scanf("%d", &n1);
+
+                str = malloc(n1 * sizeof(char));
+
+                if(str == NULL)
+                {
+                    printf("Memory allocation failed\n");
+                    break;
+                }
+
+                printf("Enter string: ");
+                scanf("%s", str);
+
+                printf("Enter character to search: ");
+                scanf(" %c", &ch);
+
+                stringchr_string(str, ch);
+
+                free(str);
+
                 break;
 
+
+            /* ============ EXIT ============ */
+
             case 5:
+
                 printf("Exiting...\n");
                 return 0;
 
+
             default:
+
                 printf("Invalid Choice\n");
         }
     }
